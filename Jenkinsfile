@@ -5,8 +5,10 @@ pipeline {
     stages {
         stage('Test docker') {
             steps {
-                docker.image('alpine:latest').inside {
-                sh 'echo "Hello, World!"'
+                script {
+                    docker.image('alpine:latest').inside {
+                    sh 'echo "Hello, World!"'
+                }
             }
         }
         }
