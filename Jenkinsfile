@@ -1,8 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'node:18'  // Use a Node.js image with npm installed
-        }
+        label 'docker'
     }
     stages {
         // stage('Test docker') {
@@ -14,13 +12,6 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Install Nodejs') {
-            steps {
-                script {
-                    sh 'apt-get update && apt-get install -y nodejs npm'
-                }
-            }
-        }
 
         stage('Checkout Code') {
             steps {
@@ -29,7 +20,9 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                nodejs(nodeJSInstallationName: 'nodejs') {
+                    sh 'npm install'
+                }
             }
         }
         stage('Build Angular App') {
