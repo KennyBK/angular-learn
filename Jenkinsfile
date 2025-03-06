@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                nodejs(nodeJSInstallationName: 'nodejs') {
+                nodejs(nodeJSInstallationName: 'angular-cli') {
                     sh 'npm install'
                 }
             }
