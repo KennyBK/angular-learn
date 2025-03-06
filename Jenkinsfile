@@ -7,29 +7,26 @@ pipeline {
             steps {
                 script {
                     docker.image('alpine:latest').inside {
-                    sh 'echo "Hello, World!"'
+                        sh 'echo "Hello, World!"'
+                    }
                 }
             }
-        }
         }
         stage('Checkout Code') {
             steps {
                 checkout scm
             }
         }
-
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
-
         stage('Build Angular App') {
             steps {
                 sh 'ng build --configuration=production'
             }
         }
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -37,7 +34,6 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy Container') {
             steps {
                 script {
