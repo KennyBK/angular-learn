@@ -1,5 +1,6 @@
 pipeline {
     agent {
+        label 'docker'
         docker {
             image 'node:18'  // Use a Node.js image with npm installed
         }
