@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        label 'docker'
+        docker {
+            image 'node:18'  // Use a Node.js image with npm installed
+        }
     }
     stages {
         // stage('Test docker') {
@@ -12,10 +14,10 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Install nodejs') {
+        stage('Install Nodejs') {
             steps {
                 script {
-                    sh 'sudo apt-get update && sudo apt-get install -y nodejs npm'
+                    sh 'apt-get update && apt-get install -y nodejs npm'
                 }
             }
         }
