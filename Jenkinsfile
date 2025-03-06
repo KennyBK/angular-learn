@@ -3,6 +3,15 @@ pipeline {
         label 'docker'
     }
     stages {
+        stage('Test docker') {
+            steps {
+                script {
+                    docker.image('alpine:latest').inside {
+                        sh 'echo "Hello, World!"'
+                    }
+                }
+            }
+        }
         stage('Checkout Code') {
             steps {
                 checkout scm
