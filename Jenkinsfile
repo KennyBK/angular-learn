@@ -6,7 +6,7 @@ pipeline {
         stage('Test docker') {
             steps {
                 script {
-                    docker.image('alpine:latest').inside {
+                    @docker.image('alpine:latest').inside {
                         sh 'echo "Hello, World!"'
                     }
                 }
