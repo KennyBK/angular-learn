@@ -1,12 +1,13 @@
 pipeline {
     agent {
-        docker { image 'node:18' } // Use Node.js in a container
-    }
-    environment {
-        DOCKER_IMAGE = 'angular-learn'  // Image name for deployment
-        CONTAINER_NAME = 'angular_container'
+        label 'docker-agent'
     }
     stages {
+        stage('Test docker') {
+            docker.image('alpine:latest').inside {
+                sh 'echo "Hello, World!"'
+            }
+        }
         stage('Checkout Code') {
             steps {
                 checkout scm
