@@ -4,9 +4,11 @@ pipeline {
     }
     stages {
         stage('Test docker') {
-            docker.image('alpine:latest').inside {
+            steps {
+                docker.image('alpine:latest').inside {
                 sh 'echo "Hello, World!"'
             }
+        }
         }
         stage('Checkout Code') {
             steps {
