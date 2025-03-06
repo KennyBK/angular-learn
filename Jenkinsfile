@@ -3,15 +3,23 @@ pipeline {
         label 'docker'
     }
     stages {
-        stage('Test docker') {
+        // stage('Test docker') {
+        //     steps {
+        //         script {
+        //             docker.image('alpine:latest').inside {
+        //                 sh 'echo "Hello, World!"'
+        //             }
+        //         }
+        //     }
+        // }
+        stage('Install nodejs') {
             steps {
                 script {
-                    docker.image('alpine:latest').inside {
-                        sh 'echo "Hello, World!"'
-                    }
+                    sh 'apt-get update && apt-get install -y nodejs npm'
                 }
             }
         }
+
         stage('Checkout Code') {
             steps {
                 checkout scm
